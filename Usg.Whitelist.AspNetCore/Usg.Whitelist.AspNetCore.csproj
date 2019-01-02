@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Usg.Whitelist.AspNetCore</AssemblyName>
+    <RootNamespace>Usg.Whitelist</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Usg.Whitelist.Common\Usg.Whitelist.Common.csproj" />
+  </ItemGroup>
+
+</Project>

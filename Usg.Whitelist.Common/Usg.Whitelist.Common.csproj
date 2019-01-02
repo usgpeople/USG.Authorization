@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;netcoreapp2.1</TargetFrameworks>
+    <RootNamespace>Usg.Whitelist</RootNamespace>
+  </PropertyGroup>
+
+</Project>
