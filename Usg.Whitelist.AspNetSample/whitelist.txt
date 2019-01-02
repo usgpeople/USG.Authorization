@@ -1,4 +1,4 @@
 ﻿# Comments, whitespace, and empty lines are ignored
 
-127.0.0.1  # Trailing commnents are supported
+127.0.0.1  # Trailing comments are supported
 ::1        # IPv6 addresses ought to work
