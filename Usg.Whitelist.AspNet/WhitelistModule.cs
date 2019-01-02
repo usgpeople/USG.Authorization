@@ -34,7 +34,7 @@ namespace Usg.Whitelist
             if (!_whitelist.Contains(ip))
             {
                 var response = application.Context.Response;
-                response.StatusCode = 401;
+                response.StatusCode = 403;
                 response.End();
             }
         }
@@ -64,7 +64,7 @@ namespace Usg.Whitelist
             if (!whitelist.Contains(ip))
             {
                 var response = application.Context.Response;
-                response.StatusCode = 401;
+                response.StatusCode = 403;
                 response.End();
             };
         }
