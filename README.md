@@ -105,6 +105,6 @@ only to certain routes or prefixes  through ASP.NET Core's default mechanism.
 switch between different whitelists depending on the environment.
 
 **Provider**: inject a custom provider with `app.UseWhitelist(async() => ...)`
-to use an altogether different kind of whitelist source. (WhitelistParser`
+to use an altogether different kind of whitelist source. (`WhitelistParser`
 from `Usg.Whitelist.Common` can be used for parsing the whitelist format
 documented above.
