@@ -5,7 +5,7 @@
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Usg.Whitelist.AspNetSample")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright USG People The Netherland B.V.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -29,6 +29,7 @@ namespace Usg.Whitelist
             this IApplicationBuilder app,
             string path)
         {
+            // Shared for all requests
             var whitelist = WhitelistParser.Parse(File.ReadAllText(path));
 
             app.UseWhitelist(() => Task.FromResult(whitelist));
@@ -38,8 +39,11 @@ namespace Usg.Whitelist
             this IApplicationBuilder app,
             string url)
         {
+            // Shared for all requests
             var client = new HttpClient();
 
+            // GetStringAsync is called on every IP check, but HttpClient
+            // will honour caching headers
             app.UseWhitelist(async () =>
                 WhitelistParser.Parse(await client.GetStringAsync(url)));
         }

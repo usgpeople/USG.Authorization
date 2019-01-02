@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFrameworks>net45;netcoreapp2.1</TargetFrameworks>
     <RootNamespace>Usg.Whitelist</RootNamespace>
+    <Version>1.0</Version>
+    <Description>Common functionality for Usg.Whitelist.AspNet and Usg.Whitelist.AspNetCore.</Description>
+    <Copyright>USG People The Netherlands B.V.</Copyright>
   </PropertyGroup>
 
 </Project>

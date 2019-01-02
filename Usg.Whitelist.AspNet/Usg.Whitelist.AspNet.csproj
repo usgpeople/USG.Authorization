@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
     <RootNamespace>Usg.Whitelist</RootNamespace>
+    <Version>1.0</Version>
+    <Description>IP whitelisting HTTP module for ASP.NET</Description>
+    <Copyright>USG People The Netherlands B.V.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

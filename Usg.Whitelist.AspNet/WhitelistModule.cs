@@ -19,6 +19,8 @@ namespace Usg.Whitelist
 
             if (_whitelist == null)
             {
+                // Have to do this here becase MapPath() isn't allowed in
+                // Init().
                 string path = application.Server.MapPath(
                     ConfigurationManager.AppSettings["whitelist:Path"]);
                 string data = File.ReadAllText(path);

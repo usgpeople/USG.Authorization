@@ -2,8 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <AssemblyName>Usg.Whitelist.AspNetCore</AssemblyName>
     <RootNamespace>Usg.Whitelist</RootNamespace>
+    <Version>1.0</Version>
+    <Description>IP whitelisting HTTP middleware for ASP.NET Core</Description>
+    <Copyright>USG People The Netherlands B.V.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
