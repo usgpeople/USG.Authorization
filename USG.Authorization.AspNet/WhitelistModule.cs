@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Usg.Whitelist
+namespace USG.Authorization
 {
     public class StaticWhitelistModule : IHttpModule
     {

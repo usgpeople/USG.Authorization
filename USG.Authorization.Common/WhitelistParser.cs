@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace Usg.Whitelist
+namespace USG.Authorization
 {
     public static class WhitelistParser
     {

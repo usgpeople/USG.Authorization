@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Usg.Whitelist.AspNetCore", "Usg.Whitelist.AspNetCore\Usg.Whitelist.AspNetCore.csproj", "{3B588573-B2FA-460C-84CD-3F8D2E808EEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USG.Authorization.AspNetCore", "USG.Authorization.AspNetCore\USG.Authorization.AspNetCore.csproj", "{3B588573-B2FA-460C-84CD-3F8D2E808EEC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Usg.Whitelist.Common", "Usg.Whitelist.Common\Usg.Whitelist.Common.csproj", "{11C3E3BD-4C14-428A-90ED-130215FE95B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USG.Authorization.Common", "USG.Authorization.Common\USG.Authorization.Common.csproj", "{11C3E3BD-4C14-428A-90ED-130215FE95B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Usg.Whitelist.AspNet", "Usg.Whitelist.AspNet\Usg.Whitelist.AspNet.csproj", "{12A74B96-24C7-44F4-9B3E-B9668259133A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USG.Authorization.AspNet", "USG.Authorization.AspNet\USG.Authorization.AspNet.csproj", "{12A74B96-24C7-44F4-9B3E-B9668259133A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Usg.Whitelist.AspNetCoreSample", "Usg.Whitelist.AspNetCoreSample\Usg.Whitelist.AspNetCoreSample.csproj", "{07F66C26-6605-4431-89AE-96A66DF16187}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USG.Authorization.AspNetCoreSample", "USG.Authorization.AspNetCoreSample\USG.Authorization.AspNetCoreSample.csproj", "{07F66C26-6605-4431-89AE-96A66DF16187}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Usg.Whitelist.AspNetSample", "Usg.Whitelist.AspNetSample\Usg.Whitelist.AspNetSample.csproj", "{B2EA5F65-D5D1-41FA-8A04-5575DE2A7A32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USG.Authorization.AspNetSample", "USG.Authorization.AspNetSample\USG.Authorization.AspNetSample.csproj", "{B2EA5F65-D5D1-41FA-8A04-5575DE2A7A32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{475EE24C-D146-45FC-9980-DD2EEF4E5DD3}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

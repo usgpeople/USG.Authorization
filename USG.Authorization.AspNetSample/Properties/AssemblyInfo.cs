@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("Usg.Whitelist.AspNetSample")]
+[assembly: AssemblyTitle("USG.Authorization.AspNetSample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Usg.Whitelist.AspNetSample")]
+[assembly: AssemblyProduct("USG.Authorization.AspNetSample")]
 [assembly: AssemblyCopyright("Copyright USG People The Netherland B.V.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

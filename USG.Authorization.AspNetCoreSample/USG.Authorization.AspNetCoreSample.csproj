@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Usg.Whitelist.AspNetCore\Usg.Whitelist.AspNetCore.csproj" />
+    <ProjectReference Include="..\USG.Authorization.AspNetCore\USG.Authorization.AspNetCore.csproj" />
   </ItemGroup>
 
 </Project>

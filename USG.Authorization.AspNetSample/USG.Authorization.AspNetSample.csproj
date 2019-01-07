@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Usg.Whitelist.AspNetSample</RootNamespace>
-    <AssemblyName>Usg.Whitelist.AspNetSample</AssemblyName>
+    <RootNamespace>USG.Authorization.AspNetSample</RootNamespace>
+    <AssemblyName>USG.Authorization.AspNetSample</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -53,9 +53,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Usg.Whitelist.AspNet\Usg.Whitelist.AspNet.csproj">
+    <ProjectReference Include="..\USG.Authorization.AspNet\USG.Authorization.AspNet.csproj">
       <Project>{12a74b96-24c7-44f4-9b3e-b9668259133a}</Project>
-      <Name>Usg.Whitelist.AspNet</Name>
+      <Name>USG.Authorization.AspNet</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

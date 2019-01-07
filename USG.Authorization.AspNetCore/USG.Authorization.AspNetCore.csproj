@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RootNamespace>Usg.Whitelist</RootNamespace>
+    <RootNamespace>USG.Authorization</RootNamespace>
     <Version>1.0</Version>
-    <Description>IP whitelisting HTTP middleware for ASP.NET Core</Description>
+    <Description>Contains IP whitelisting HTTP middleware for ASP.NET Core</Description>
     <Copyright>USG People The Netherlands B.V.</Copyright>
   </PropertyGroup>
 
@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Usg.Whitelist.Common\Usg.Whitelist.Common.csproj" />
+    <ProjectReference Include="..\USG.Authorization.Common\USG.Authorization.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Usg.Whitelist.AspNetCoreSample
+namespace USG.Authorization.AspNetCoreSample
 {
     public class Program
     {

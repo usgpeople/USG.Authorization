@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 
-namespace Usg.Whitelist
+namespace USG.Authorization
 {
     public static class WhitelistMiddleware
     {

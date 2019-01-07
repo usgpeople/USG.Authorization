@@ -1,15 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
-    <RootNamespace>Usg.Whitelist</RootNamespace>
+    <RootNamespace>USG.Authorization</RootNamespace>
     <Version>1.0</Version>
-    <Description>IP whitelisting HTTP module for ASP.NET</Description>
+    <Description>Contains IP whitelisting HTTP module for ASP.NET</Description>
     <Copyright>USG People The Netherlands B.V.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Usg.Whitelist.Common\Usg.Whitelist.Common.csproj" />
+    <ProjectReference Include="..\USG.Authorization.Common\USG.Authorization.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

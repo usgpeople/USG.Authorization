@@ -1,15 +1,15 @@
-Usg.Whitelist
-=============
-ASP.NET and ASP.NET Core middleware that compares the client IP against a
-local whitelist file or one hosted on a webserver, returning a `403 Forbidden`
-response if there is no match.
+USG.Authorization
+=================
+Currently contains ASP.NET and ASP.NET Core middleware that compares the
+client IP against a local whitelist file or one hosted on a webserver,
+returning a `403 Forbidden` response if there is no match.
 
 Setup (ASP.NET Core)
 --------------------
-After adding a Usg.Whitelist.AspNetCore package reference, modify Startup.cs
+After adding a USG.Authorization.AspNetCore package reference, modify Startup.cs
 as follows:
 
-    using Usg.Whitelist;
+    using USG.Authorization;
 
     // ...
 
@@ -35,7 +35,7 @@ to the whitelisting so take care to place the calls appropariately.
 
 Setup (ASP.NET)
 ---------------
-After installing the Usg.Whitelist.AspNet package, add one of the HTTP modules
+After installing the USG.Authorization.AspNet package, add one of the HTTP modules
 in Web.config:
 
     <system.webServer>
@@ -43,12 +43,12 @@ in Web.config:
         <!-- To use a local whitelist file, configured through the
              whitelist:Path app setting. See below for syntax. -->
         <add name="HostedWhitelist"
-             type="Usg.Whitelist.HostedWhitelistModule,Usg.Whitelist.AspNet"/>
+             type="USG.Authorization.HostedWhitelistModule,USG.Authorization.AspNet"/>
 
         <!-- To use a remote whitelist file, configured through the
              whitelist:Url app setting. -->
         <add name="StaticWhitelist"
-             type="Usg.Whitelist.StaticWhitelistModule,Usg.Whitelist.AspNet"/>
+             type="USG.Authorization.StaticWhitelistModule,USG.Authorization.AspNet"/>
       </modules>
     </system.webServer>
 
@@ -106,5 +106,5 @@ switch between different whitelists depending on the environment.
 
 **Provider**: inject a custom provider with `app.UseWhitelist(async() => ...)`
 to use an altogether different kind of whitelist source. (`WhitelistParser`
-from `Usg.Whitelist.Common` can be used for parsing the whitelist format
+from `USG.Authorization.Common` can be used for parsing the whitelist format
 documented above.
