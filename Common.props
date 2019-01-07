@@ -1,0 +1,13 @@
+<Project>
+
+  <PropertyGroup>
+    <Version>1.0</Version>
+    <Copyright>USG People The Netherlands B.V.</Copyright>
+    <Authors>USG People The Netherlands B.V.</Authors>
+    <RootNamespace>USG.Authorization</RootNamespace>
+    <PackageProjectUrl>https://usgpeople.visualstudio.com/USG%20Web%20Development/_git/USG.Authorization</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://usgpeople.visualstudio.com/USG%20Web%20Development/_git/USG.Authorization</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>

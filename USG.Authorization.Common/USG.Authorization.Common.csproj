@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\Common.props" />
+
   <PropertyGroup>
     <TargetFrameworks>net45;netcoreapp2.1</TargetFrameworks>
-    <RootNamespace>USG.Authorization</RootNamespace>
-    <Version>1.0</Version>
     <Description>Common functionality for USG.Authorization.AspNet and USG.Authorization.AspNetCore.</Description>
-    <Copyright>USG People The Netherlands B.V.</Copyright>
   </PropertyGroup>
 
 </Project>

@@ -108,3 +108,8 @@ switch between different whitelists depending on the environment.
 to use an altogether different kind of whitelist source. (`WhitelistParser`
 from `USG.Authorization.Common` can be used for parsing the whitelist format
 documented above.
+
+Releasing
+---------
+Update `Common.props` with new version number and push. CI will publish
+packages.

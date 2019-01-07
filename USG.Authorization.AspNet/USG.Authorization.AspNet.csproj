@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\Common.props" />
+
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
-    <RootNamespace>USG.Authorization</RootNamespace>
-    <Version>1.0</Version>
     <Description>Contains IP whitelisting HTTP module for ASP.NET</Description>
-    <Copyright>USG People The Netherlands B.V.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
