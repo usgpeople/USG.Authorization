@@ -9,6 +9,16 @@ using System.Web;
 
 namespace USG.Authorization
 {
+    // These classes aren't tested because it's nigh impossible to mock
+    // HttpApplication and friends:
+    //
+    //  - Properties are read only so cannot be assigned with test values.
+    //  - Classes and members are nonvirtual so they cannot be mocked with
+    //    Moq.
+    //  - Extracting these modules to service classes would require a bunch
+    //    of extra classes and interfaces and then the IHttpModules still
+    //    wouldn't be tested as such.
+
     public class StaticWhitelistModule : IHttpModule
     {
         ISet<IPAddress> _whitelist;

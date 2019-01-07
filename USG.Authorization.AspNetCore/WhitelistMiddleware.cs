@@ -37,10 +37,12 @@ namespace USG.Authorization
 
         public static void UseHostedWhitelist(
             this IApplicationBuilder app,
-            string url)
+            string url,
+            HttpClient client = null)
         {
             // Shared for all requests
-            var client = new HttpClient();
+            if (client == null)
+                client = new HttpClient();
 
             // GetStringAsync is called on every IP check, but HttpClient
             // will honour caching headers
