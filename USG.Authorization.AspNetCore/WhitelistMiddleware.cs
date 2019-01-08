@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace USG.Authorization
 {
@@ -40,9 +41,18 @@ namespace USG.Authorization
             string url,
             HttpClient client = null)
         {
-            // Shared for all requests
+            // Shared HTTP client for all requests
             if (client == null)
-                client = new HttpClient();
+            {
+                // Use IMemoryCache from DI if available, e.g. if configured
+                // with services.AddMemoryCache()
+                var cache = (MemoryCache)app.ApplicationServices
+                        .GetService(typeof(IMemoryCache))
+                    ?? new MemoryCache(new MemoryCacheOptions());
+
+                client = new HttpClient(
+                    new CachingHttpHandler(new HttpClientHandler(), cache));
+            }
 
             // GetStringAsync is called on every IP check, but HttpClient
             // will honour caching headers

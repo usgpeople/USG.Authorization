@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Net.Cache;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -81,7 +83,9 @@ namespace USG.Authorization
 
         public void Init(HttpApplication context)
         {
-            _client = new HttpClient();
+            _client = new HttpClient(new CachingHttpHandler(
+                new HttpClientHandler(),
+                new MemoryCache(new MemoryCacheOptions())));
             _url = ConfigurationManager.AppSettings["whitelist:Url"];
 
             var handler = new EventHandlerTaskAsyncHelper(beginRequest);
