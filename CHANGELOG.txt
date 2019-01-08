@@ -1,0 +1,10 @@
+2.0 (2019-01-08)
+----------------
+ - New: cache hosted whitelists if allowed by headers, as originally intended.
+ - Fixed: sample page titles.
+ - Breaking: net45 targets are now net461 for Microsoft.Extension.Caching.
+ - Breaking: use of System.Net.Http package.
+
+1.0 (2019-01-07)
+----------------
+Initial release.
