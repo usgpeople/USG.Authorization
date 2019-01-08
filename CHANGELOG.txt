@@ -1,3 +1,8 @@
+2.0.1 (2019-01-08)
+------------------
+ - Fixed: cached responses are copied to protected the content against
+   disposal.
+
 2.0 (2019-01-08)
 ----------------
  - New: cache hosted whitelists if allowed by headers, as originally intended.

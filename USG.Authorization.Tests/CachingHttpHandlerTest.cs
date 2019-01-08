@@ -54,8 +54,10 @@ namespace USG.Authorization.Tests
 
             Assert.AreNotSame(original, response1);
             Assert.AreNotSame(original, response2);
+            Assert.AreNotSame(response1, response2);
             Assert.AreNotSame(original.Content, response1.Content);
             Assert.AreNotSame(original.Content, response2.Content);
+            Assert.AreNotSame(response1.Content, response2.Content);
 
             Assert.AreEqual(original.ReasonPhrase, response1.ReasonPhrase);
             Assert.AreEqual(original.Headers.Date, response1.Headers.Date);

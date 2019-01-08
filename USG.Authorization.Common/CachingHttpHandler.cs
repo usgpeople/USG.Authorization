@@ -58,7 +58,12 @@ namespace USG.Authorization
             string key = request.RequestUri.AbsoluteUri;
 
             if (_cache.TryGetValue<HttpResponseMessage>(key, out var cached))
-                return cached; 
+            {
+                // Copy the cached entry to protect cached.Content from
+                // disposal
+                var cachedData = await cached.Content.ReadAsByteArrayAsync();
+                return copyResponse(cached, cachedData);
+            }
 
             var response = await base.SendAsync(request, cancellationToken);
 
@@ -68,13 +73,15 @@ namespace USG.Authorization
             var data = await response.Content.ReadAsByteArrayAsync();
             var copy = copyResponse(response, data);
 
-            return _cache.Set(key, copy, new MemoryCacheEntryOptions
+            _cache.Set(key, copy, new MemoryCacheEntryOptions
             {
                 AbsoluteExpiration =
                     (response.Headers.Date ?? DateTime.Now) +
                     response.Headers.CacheControl.MaxAge,
                 Size = data.Length
             });
+
+            return copyResponse(copy, data);
         }
     }
 }
