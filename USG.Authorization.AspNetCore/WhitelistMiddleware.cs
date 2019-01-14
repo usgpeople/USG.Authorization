@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Caching.Memory;
@@ -18,11 +19,20 @@ namespace USG.Authorization
             app.Use(async (context, next) =>
             {
                 var whitelist = await whitelistProvider();
+                var ip = context.Connection.RemoteIpAddress;
 
-                if (whitelist.Contains(context.Connection.RemoteIpAddress))
+                if (whitelist.Contains(ip))
+                {
                     await next();
+                }
                 else
+                {
+                    var message = Encoding.ASCII.GetBytes(
+                        $"Host {ip} is not whitelisted for this site.");
+
                     context.Response.StatusCode = 403;
+                    context.Response.Body.Write(message);
+                }
             });
         }
 

@@ -47,6 +47,8 @@ namespace USG.Authorization
             {
                 var response = application.Context.Response;
                 response.StatusCode = 403;
+                response.Output.WriteLine($"Host {ip} is not whitelisted " +
+                    $"for this site.");
                 response.End();
             }
         }
@@ -77,6 +79,8 @@ namespace USG.Authorization
             {
                 var response = application.Context.Response;
                 response.StatusCode = 403;
+                response.Output.WriteLine($"Host {ip} is not whitelisted " +
+                    $"for this site.");
                 response.End();
             };
         }
