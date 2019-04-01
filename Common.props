@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <Version>2.1</Version>
+    <Version>2.2-alpha.1</Version>
     <Copyright>USG People The Netherlands B.V.</Copyright>
     <Authors>USG People The Netherlands B.V.</Authors>
     <RootNamespace>USG.Authorization</RootNamespace>
