@@ -77,8 +77,7 @@ namespace USG.Authorization
             {
                 AbsoluteExpiration =
                     (response.Headers.Date ?? DateTime.Now) +
-                    response.Headers.CacheControl.MaxAge,
-                Size = data.Length
+                    response.Headers.CacheControl.MaxAge
             });
 
             return copyResponse(copy, data);
