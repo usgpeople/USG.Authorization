@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +12,14 @@ namespace USG.Authorization
     {
         public static void UseWhitelist(
             this IApplicationBuilder app,
-            Func<Task<ISet<IPAddress>>> whitelistProvider)
+            Func<Task<IWhitelist>> whitelistProvider)
         {
             app.Use(async (context, next) =>
             {
                 var whitelist = await whitelistProvider();
                 var ip = context.Connection.RemoteIpAddress;
 
-                if (whitelist.Contains(ip))
+                if (whitelist.Match(ip))
                 {
                     await next();
                 }
@@ -41,9 +39,9 @@ namespace USG.Authorization
             string path)
         {
             // Shared for all requests
-            var whitelist = WhitelistParser.Parse(File.ReadAllText(path));
+            var whitelist = Whitelist.Parse(File.ReadAllText(path));
 
-            app.UseWhitelist(() => Task.FromResult(whitelist));
+            app.UseWhitelist(() => Task.FromResult<IWhitelist>(whitelist));
         }
 
         public static void UseHostedWhitelist(
@@ -67,7 +65,7 @@ namespace USG.Authorization
             // GetStringAsync is called on every IP check, but HttpClient
             // will honour caching headers
             app.UseWhitelist(async () =>
-                WhitelistParser.Parse(await client.GetStringAsync(url)));
+                Whitelist.Parse(await client.GetStringAsync(url)));
         }
     }
 }

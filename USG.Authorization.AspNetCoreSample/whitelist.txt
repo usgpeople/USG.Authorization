@@ -2,3 +2,7 @@
 
 127.0.0.1  # Trailing comments are supported
 ::1        # IPv6 addresses ought to work
+
+localhost       # Hostnames work
+*.usgpeople.nl  # As do globs
+192.168.0.*     # Also in IP addresses

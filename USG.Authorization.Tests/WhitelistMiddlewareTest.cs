@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -42,10 +41,7 @@ namespace USG.Authorization.Tests
         [TestMethod]
         public async Task UseWhitelist_Match()
         {
-            var whitelist = new HashSet<IPAddress>
-            {
-                IPAddress.Parse("::1")
-            };
+            var whitelist = Whitelist.Parse("::1");
 
             var builder = new WebHostBuilder().Configure(app =>
             {
@@ -63,7 +59,7 @@ namespace USG.Authorization.Tests
         [TestMethod]
         public async Task UseWhitelist_NoMatch()
         {
-            var whitelist = new HashSet<IPAddress> { };
+            var whitelist = Whitelist.Parse("");
 
             var builder = new WebHostBuilder().Configure(app =>
             {
@@ -83,7 +79,7 @@ namespace USG.Authorization.Tests
         {
             int count = 0;
 
-            var whitelist = new HashSet<IPAddress> { };
+            var whitelist = Whitelist.Parse("");
 
             var builder = new WebHostBuilder().Configure(app =>
             {

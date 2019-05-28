@@ -1,3 +1,8 @@
+TBD
+---
+ - New: support for hostnames and globs. IWhitelist is introduced to provide
+   this flexibility.
+
 2.1 (2019-01-14)
 ----------------
  - New: a short message including the IP is sent in the response on 403, to
