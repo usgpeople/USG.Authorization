@@ -69,18 +69,22 @@ Note that a local path should be rooted with `~`.
 
 Whitelist syntax
 ----------------
-One IPv4 or IPv6 address per line. Comments starting with `#` and empty lines
-are ignored.
+One IPv4 address, IPv6 address, or hostname per line. Globs are supported.
+Comments starting with `#` and empty lines are ignored.
 
 Example:
 
-    127.0.0.1  # Allow local access
-    ::1        # Allow local access over IPv6
-    8.8.8.8    # Allow Google DNS
+    127.0.0.*     # Allow local access
+    ::1           # Allow local access over IPv6
+    1.1.1.1       # Allow Cloudflare DNS
+    *.google.com  # Allow anything from Google
+
+Reverse DNS is used to look up hostnames. This means only the primary
+hostname is used.
 
 Behaviour
 ---------
-Any exceptions retrieving the whitelist are bubled up, most likely yielding an
+Any exceptions retrieving the whitelist are bubbled up, most likely yielding an
 "Internal Server Error" response.
 
 Static whitelists are read once at first use and not updated.
@@ -108,9 +112,7 @@ only to certain routes or prefixes  through ASP.NET Core's default mechanism.
 switch between different whitelists depending on the environment.
 
 **Provider**: inject a custom provider with `app.UseWhitelist(async() => ...)`
-to use an altogether different kind of whitelist source. (`WhitelistParser`
-from `USG.Authorization.Common` can be used for parsing the whitelist format
-documented above.
+to use an altogether different kind of whitelist source.
 
 Releasing
 ---------

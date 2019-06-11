@@ -1,10 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Net;
-using System.Net.Cache;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -23,7 +21,7 @@ namespace USG.Authorization
 
     public class StaticWhitelistModule : IHttpModule
     {
-        ISet<IPAddress> _whitelist;
+        Whitelist _whitelist;
 
         void beginRequest(object sender, EventArgs e)
         {
@@ -37,13 +35,13 @@ namespace USG.Authorization
                     ConfigurationManager.AppSettings["whitelist:Path"]);
                 string data = File.ReadAllText(path);
 
-                _whitelist = WhitelistParser.Parse(data);
+                _whitelist = Whitelist.Parse(data);
             }
 
             var request = application.Context.Request;
             var ip = IPAddress.Parse(request.UserHostAddress);
 
-            if (!_whitelist.Contains(ip))
+            if (!_whitelist.Match(ip))
             {
                 var response = application.Context.Response;
                 response.StatusCode = 403;
@@ -73,9 +71,9 @@ namespace USG.Authorization
             var ip = IPAddress.Parse(request.UserHostAddress);
 
             var data = await _client.GetStringAsync(_url);
-            var whitelist = WhitelistParser.Parse(data);
+            var whitelist = Whitelist.Parse(data);
 
-            if (!whitelist.Contains(ip))
+            if (!whitelist.Match(ip))
             {
                 var response = application.Context.Response;
                 response.StatusCode = 403;
