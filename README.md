@@ -45,13 +45,13 @@ in Web.config:
       <modules>
         <!-- To use a local whitelist file, configured through the
              whitelist:Path app setting. See below for syntax. -->
-        <add name="HostedWhitelist"
-             type="USG.Authorization.HostedWhitelistModule,USG.Authorization.AspNet"/>
+        <add name="StaticWhitelist"
+             type="USG.Authorization.StaticWhitelistModule,USG.Authorization.AspNet"/>
 
         <!-- To use a remote whitelist file, configured through the
              whitelist:Url app setting. -->
-        <add name="StaticWhitelist"
-             type="USG.Authorization.StaticWhitelistModule,USG.Authorization.AspNet"/>
+        <add name="HostedWhitelist"
+             type="USG.Authorization.HostedWhitelistModule,USG.Authorization.AspNet"/>
       </modules>
     </system.webServer>
 
