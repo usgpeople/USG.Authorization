@@ -1,5 +1,5 @@
-TBD
----
+3.0.1 (2019-06-24)
+------------------
  - Fixed: failing text due to Google DNS host name change.
 
 3.0 (2019-06-24)
