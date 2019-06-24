@@ -32,7 +32,7 @@ namespace USG.Authorization.Tests
         {
             var whitelist = new Whitelist(
                 new IPAddress[] { },
-                new Regex[] { new Regex("^google-public-dns-a\\.google\\.com$") });
+                new Regex[] { new Regex("^dns\\.google$") });
 
             Assert.IsTrue(whitelist.Match(IPAddress.Parse("8.8.8.8")));
         }
@@ -42,7 +42,7 @@ namespace USG.Authorization.Tests
         {
             var whitelist = new Whitelist(
                 new IPAddress[] { },
-                new Regex[] { new Regex("^google-public-dns-[ab]\\.google\\.com$") });
+                new Regex[] { new Regex("^(dns|mail)\\.google$") });
 
             Assert.IsTrue(whitelist.Match(IPAddress.Parse("8.8.8.8")));
         }
@@ -153,7 +153,7 @@ namespace USG.Authorization.Tests
         [TestMethod]
         public void Parse_Hostname()
         {
-            string input = "google-public-dns-a.google.com";
+            string input = "dns.google";
 
             var whitelist = Whitelist.Parse(input);
 
@@ -163,7 +163,7 @@ namespace USG.Authorization.Tests
         [TestMethod]
         public void Parse_Glob()
         {
-            string input = "*.google.com";
+            string input = "*.google";
 
             var whitelist = Whitelist.Parse(input);
 
@@ -183,7 +183,7 @@ namespace USG.Authorization.Tests
         [TestMethod]
         public void Parse_NoRegex()
         {
-            string input = "[^\\.]+.google.com";
+            string input = "[^\\.]+.google";
 
             var whitelist = Whitelist.Parse(input);
 

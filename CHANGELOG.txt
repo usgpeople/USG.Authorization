@@ -1,3 +1,7 @@
+TBD
+---
+ - Fixed: failing text due to Google DNS host name change.
+
 3.0 (2019-06-24)
 ----------------
  - New: support for hostnames and globs. IWhitelist is introduced to provide
