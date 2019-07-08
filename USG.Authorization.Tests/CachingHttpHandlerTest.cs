@@ -35,7 +35,7 @@ namespace USG.Authorization.Tests
     public class CachingHttpHandlerTest
     {
         [TestMethod]
-        public async Task Get()
+        public async Task Get_Cached()
         {
             var cache = new MemoryCache(new MemoryCacheOptions());
 
@@ -83,7 +83,7 @@ namespace USG.Authorization.Tests
         }
 
         [TestMethod]
-        public async Task GetCachedNoContent()
+        public async Task Get_CachedNoContent()
         {
             var cache = new MemoryCache(new MemoryCacheOptions());
 
@@ -101,15 +101,14 @@ namespace USG.Authorization.Tests
             var response2 = await client.SendAsync(
                 new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
 
-            Assert.AreNotSame(original, response1);
-            Assert.AreNotSame(original, response2);
+            Assert.AreEqual(1, backing.CallCount); // cached
 
             Assert.IsNull(response1.Content);
             Assert.IsNull(response2.Content);
         }
 
         [TestMethod]
-        public async Task GetNoCacheControl()
+        public async Task Get_NoCacheControl()
         {
             // No cache control headers, so the request may be cached, but no
             // DefaultCacheDuration so it shouldn't be.
@@ -130,7 +129,7 @@ namespace USG.Authorization.Tests
         }
 
         [TestMethod]
-        public async Task GetDefaultCacheDuration()
+        public async Task Get_DefaultCacheDuration()
         {
             // No cache control headers, so the request may be cached, and with
             // DefaultCacheDuration so it should be.
@@ -152,12 +151,11 @@ namespace USG.Authorization.Tests
             var response2 = await client.SendAsync(
                 new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
 
-            Assert.AreNotSame(original, response1);
-            Assert.AreNotSame(original, response2);
+            Assert.AreEqual(1, backing.CallCount); // cached
         }
 
         [TestMethod]
-        public async Task GetNoStore()
+        public async Task Get_NoStore()
         {
             // DefaultCacheDuration set but caching forbidden with NoStore so
             // should not be cached.
@@ -184,7 +182,7 @@ namespace USG.Authorization.Tests
         }
 
         [TestMethod]
-        public async Task GetNotFound()
+        public async Task Get_NotFound()
         {
             var cache = new MemoryCache(new MemoryCacheOptions());
             var original = new HttpResponseMessage(HttpStatusCode.NotFound);
@@ -197,8 +195,7 @@ namespace USG.Authorization.Tests
             var response2 = await client.SendAsync(
                 new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
 
-            Assert.AreSame(original, response1);
-            Assert.AreSame(original, response2);
+            Assert.AreEqual(2, backing.CallCount); // not cached
         }
 
         [TestMethod]
