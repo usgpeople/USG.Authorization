@@ -102,14 +102,72 @@ namespace USG.Authorization.Tests
         }
 
         [TestMethod]
-        public async Task GetNoCache()
+        public async Task GetNoCacheControl()
         {
+            // No cache control headers, so the request may be cached, but no
+            // DefaultCacheDuration so it shouldn't be.
+
             var cache = new MemoryCache(new MemoryCacheOptions());
 
             var original = new HttpResponseMessage(HttpStatusCode.OK);
             var backing = new MockHttpMessageHandler(async r => original);
             var client = new HttpClient(
                 new CachingHttpHandler(backing, cache));
+
+            var response1 = await client.SendAsync(
+                new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
+            var response2 = await client.SendAsync(
+                new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
+
+            Assert.AreSame(original, response1);
+            Assert.AreSame(original, response2);
+        }
+
+        [TestMethod]
+        public async Task GetDefaultCacheDuration()
+        {
+            // No cache control headers, so the request may be cached, and with
+            // DefaultCacheDuration so it should be.
+
+            var cache = new MemoryCache(new MemoryCacheOptions());
+
+            var original = new HttpResponseMessage(HttpStatusCode.OK);
+            original.Content = new StringContent("Hello, World!");
+
+            var backing = new MockHttpMessageHandler(async r => original);
+
+            var handler = new CachingHttpHandler(backing, cache);
+            handler.DefaultCacheDuration = new TimeSpan(0, 5, 0);
+
+            var client = new HttpClient(handler);
+
+            var response1 = await client.SendAsync(
+                new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
+            var response2 = await client.SendAsync(
+                new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
+
+            Assert.AreNotSame(original, response1);
+            Assert.AreNotSame(original, response2);
+        }
+
+        [TestMethod]
+        public async Task GetNoStore()
+        {
+            // DefaultCacheDuration set but caching forbidden with NoStore so
+            // should not be cached.
+
+            var cache = new MemoryCache(new MemoryCacheOptions());
+
+            var original = new HttpResponseMessage(HttpStatusCode.OK);
+            original.Headers.CacheControl = new CacheControlHeaderValue();
+            original.Headers.CacheControl.NoStore = true;
+
+            var backing = new MockHttpMessageHandler(async r => original);
+
+            var handler = new CachingHttpHandler(backing, cache);
+            handler.DefaultCacheDuration = new TimeSpan(0, 5, 0);
+
+            var client = new HttpClient(handler);
 
             var response1 = await client.SendAsync(
                 new HttpRequestMessage(HttpMethod.Get, "http://example.com"));

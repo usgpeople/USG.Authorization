@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
@@ -17,9 +18,7 @@ namespace USG.Authorization
         {
             return
                 response.IsSuccessStatusCode &&
-                response.Headers.CacheControl != null &&
-                response.Headers.CacheControl.NoStore == false &&
-                response.Headers.CacheControl.MaxAge != null;
+                response.Headers.CacheControl?.NoStore != true;
         }
 
         static HttpResponseMessage copyResponse(
@@ -48,11 +47,25 @@ namespace USG.Authorization
 
         IMemoryCache _cache;
 
+        DateTimeOffset getExpiration(HttpResponseHeaders headers)
+        {
+            var maxAge = headers.CacheControl?.MaxAge;
+
+            if (maxAge == null)
+                return DateTime.Now + DefaultCacheDuration;
+            else if (headers.Date != null)
+                return headers.Date.Value + maxAge.Value;
+            else
+                return DateTime.Now + maxAge.Value;
+        }
+
         public CachingHttpHandler(HttpMessageHandler inner, IMemoryCache cache)
             : base(inner)
         {
             _cache = cache;
         }
+
+        public TimeSpan DefaultCacheDuration { get; set; }
 
         protected override async Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request, CancellationToken cancellationToken)
@@ -76,15 +89,17 @@ namespace USG.Authorization
             if (!mayCache(response))
                 return response;
 
+            var expiration = getExpiration(response.Headers);
+            if (expiration <= DateTime.Now)
+                return response;
+
             var data = response.Content == null ? null :
                     await response.Content.ReadAsByteArrayAsync();
             var copy = copyResponse(response, data);
 
             _cache.Set(key, copy, new MemoryCacheEntryOptions
             {
-                AbsoluteExpiration =
-                    (response.Headers.Date ?? DateTime.Now) +
-                    response.Headers.CacheControl.MaxAge
+                AbsoluteExpiration = expiration
             });
 
             return copyResponse(copy, data);

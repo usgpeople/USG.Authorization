@@ -1,5 +1,6 @@
 TBD
 ---
+ - New: defaults to 5 minute caching.
  - Fixed: CachingHttpHandler throwing exceptions when processing responses
    with no content.
  - Fixed: AspNetSample trying to use wrong System.Net.HttpClient.dll.

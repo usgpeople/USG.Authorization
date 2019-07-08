@@ -36,6 +36,10 @@ as follows:
 Any middleware (`Use...()`) added after the whitelisting middleware is subject
 to the whitelisting so take care to place the calls appropariately.
 
+`UseHostedWhitelist` optionally takes an `HttpClient` to use. By default, it
+creates one with a `CachingHttpHandler` with `DefaultCacheDuration` set to 5
+minutes.
+
 Setup (ASP.NET)
 ---------------
 After installing the USG.Authorization.AspNet package, add one of the HTTP modules
@@ -63,9 +67,11 @@ Configure the chosen module in the `appSettings` section:
     <appSettings>
       <add key="whitelist:Path" value="~/whitelist.txt"/>
       <add key="whitelist:Url" value="http://localhost/whitelist.txt"/>
+      <add key="whitelist:DefaultCacheDuration" value="0:05:00"/>
     </appSettings>
 
-Note that a local path should be rooted with `~`.
+Local paths should be rooted with `~`. DefaultCacheDuration is optional and
+defaults to 0:05:00 (5 minutes).
 
 Whitelist syntax
 ----------------
@@ -90,8 +96,8 @@ Any exceptions retrieving the whitelist are bubbled up, most likely yielding an
 Static whitelists are read once at first use and not updated.
 
 Hosted whitelists are fetched for every request with a single `HttpClient`
-instance which will cache responses as allowed by the response headers. It
-is advisable to configure the server hosting the whitelist appropriately.
+instance which will cache responses as allowed by the response headers,
+defaulting to 5 minutes.
 
 Custom whitelist providers are called for every request and are responsible
 for any desired caching behaviour.
@@ -101,7 +107,8 @@ Customisation
 **Reponse**: use custom error pages or middelware inserted prior to the
 whitelisting middleware to customise the 403 response.
 
-**Caching**: configure the server hosting the whitelist to return standard
+**Caching**: other than tweaking `DefaultCacheDuration` as described above,
+one may configure the server hosting the whitelist to return standard
 HTTP response headers to control if and how the downloaded whitelists are
 cached.
 

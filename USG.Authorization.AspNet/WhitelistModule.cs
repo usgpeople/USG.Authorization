@@ -85,16 +85,23 @@ namespace USG.Authorization
 
         public void Init(HttpApplication context)
         {
-            _client = new HttpClient(new CachingHttpHandler(
+            var handler = new CachingHttpHandler(
                 new HttpClientHandler(),
-                new MemoryCache(new MemoryCacheOptions())));
+                new MemoryCache(new MemoryCacheOptions()));
+
+            if (TimeSpan.TryParse(
+                    ConfigurationManager.AppSettings["whitelist:DefaultCacheDuration"],
+                    out var duration))
+                handler.DefaultCacheDuration = duration;
+
+            _client = new HttpClient(handler);
             _url = ConfigurationManager.AppSettings["whitelist:Url"];
 
-            var handler = new EventHandlerTaskAsyncHelper(beginRequest);
+            var eventHandler = new EventHandlerTaskAsyncHelper(beginRequest);
 
             context.AddOnBeginRequestAsync(
-                handler.BeginEventHandler,
-                handler.EndEventHandler);
+                eventHandler.BeginEventHandler,
+                eventHandler.EndEventHandler);
         }
 
         public void Dispose() { }

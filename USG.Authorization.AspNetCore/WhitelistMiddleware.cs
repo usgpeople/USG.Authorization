@@ -58,8 +58,13 @@ namespace USG.Authorization
                         .GetService(typeof(IMemoryCache))
                     ?? new MemoryCache(new MemoryCacheOptions());
 
-                client = new HttpClient(
-                    new CachingHttpHandler(new HttpClientHandler(), cache));
+                // Default to 5 minutes caching if not forbidden by NoStore
+                // or specified by Cache-Control headers.
+                var handler = new CachingHttpHandler(
+                        new HttpClientHandler(), cache);
+                handler.DefaultCacheDuration = new TimeSpan(0, 5, 0);
+
+                client = new HttpClient(handler);
             }
 
             // GetStringAsync is called on every IP check, but HttpClient
