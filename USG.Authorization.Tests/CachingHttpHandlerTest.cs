@@ -20,10 +20,15 @@ namespace USG.Authorization.Tests
             _callback = callback;
         }
 
+        public int CallCount { get; private set; }
+
         protected override async Task<HttpResponseMessage> SendAsync(
-                HttpRequestMessage request,
-                CancellationToken cancellationToken)
-            => await _callback(request);
+            HttpRequestMessage request,
+            CancellationToken cancellationToken)
+        {
+            CallCount++;
+            return await _callback(request);
+        }
     }
 
     [TestClass]
@@ -51,6 +56,8 @@ namespace USG.Authorization.Tests
                 new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
             var response2 = await client.SendAsync(
                 new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
+
+            Assert.AreEqual(1, backing.CallCount); // cached
 
             Assert.AreNotSame(original, response1);
             Assert.AreNotSame(original, response2);
@@ -119,8 +126,7 @@ namespace USG.Authorization.Tests
             var response2 = await client.SendAsync(
                 new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
 
-            Assert.AreSame(original, response1);
-            Assert.AreSame(original, response2);
+            Assert.AreEqual(2, backing.CallCount); // not cached
         }
 
         [TestMethod]
@@ -174,8 +180,7 @@ namespace USG.Authorization.Tests
             var response2 = await client.SendAsync(
                 new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
 
-            Assert.AreSame(original, response1);
-            Assert.AreSame(original, response2);
+            Assert.AreEqual(2, backing.CallCount); // not cached
         }
 
         [TestMethod]
@@ -210,8 +215,7 @@ namespace USG.Authorization.Tests
             var response2 = await client.SendAsync(
                 new HttpRequestMessage(HttpMethod.Post, "http://example.com"));
 
-            Assert.AreSame(original, response1);
-            Assert.AreSame(original, response2);
+            Assert.AreEqual(2, backing.CallCount); // not cached
         }
     }
 }
