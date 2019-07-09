@@ -1,5 +1,5 @@
-TBD
----
+3.0.2 (2019-07-09)
+------------------
  - New: defaults to 5 minute caching.
  - Fixed: CachingHttpHandler throwing exceptions when processing responses
    with no content.
