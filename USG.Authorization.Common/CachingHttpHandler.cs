@@ -27,7 +27,6 @@ namespace USG.Authorization
         {
             var copy = new HttpResponseMessage
             {
-                Content = new ByteArrayContent(data),
                 ReasonPhrase = response.ReasonPhrase,
                 StatusCode = response.StatusCode,
                 Version = response.Version
@@ -35,8 +34,14 @@ namespace USG.Authorization
 
             foreach (var header in response.Headers)
                 copy.Headers.Add(header.Key, header.Value);
-            foreach (var header in response.Content.Headers)
-                copy.Content.Headers.Add(header.Key, header.Value);
+
+            if (data != null)
+            {
+                copy.Content = new ByteArrayContent(data);
+
+                foreach (var header in response.Content.Headers)
+                    copy.Content.Headers.Add(header.Key, header.Value);
+            }
 
             return copy;
         }
@@ -61,7 +66,8 @@ namespace USG.Authorization
             {
                 // Copy the cached entry to protect cached.Content from
                 // disposal
-                var cachedData = await cached.Content.ReadAsByteArrayAsync();
+                var cachedData = cached.Content == null ? null :
+                        await cached.Content.ReadAsByteArrayAsync();
                 return copyResponse(cached, cachedData);
             }
 
@@ -70,7 +76,8 @@ namespace USG.Authorization
             if (!mayCache(response))
                 return response;
 
-            var data = await response.Content.ReadAsByteArrayAsync();
+            var data = response.Content == null ? null :
+                    await response.Content.ReadAsByteArrayAsync();
             var copy = copyResponse(response, data);
 
             _cache.Set(key, copy, new MemoryCacheEntryOptions

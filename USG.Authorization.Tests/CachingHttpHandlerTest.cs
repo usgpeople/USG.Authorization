@@ -76,6 +76,32 @@ namespace USG.Authorization.Tests
         }
 
         [TestMethod]
+        public async Task GetCachedNoContent()
+        {
+            var cache = new MemoryCache(new MemoryCacheOptions());
+
+            var original = new HttpResponseMessage(HttpStatusCode.OK);
+            original.Headers.Date = new DateTime(2028, 12, 24);
+            original.Headers.CacheControl = new CacheControlHeaderValue();
+            original.Headers.CacheControl.MaxAge = new TimeSpan(0, 5, 0);
+
+            var backing = new MockHttpMessageHandler(async r => original);
+            var client = new HttpClient(
+                new CachingHttpHandler(backing, cache));
+
+            var response1 = await client.SendAsync(
+                new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
+            var response2 = await client.SendAsync(
+                new HttpRequestMessage(HttpMethod.Get, "http://example.com"));
+
+            Assert.AreNotSame(original, response1);
+            Assert.AreNotSame(original, response2);
+
+            Assert.IsNull(response1.Content);
+            Assert.IsNull(response2.Content);
+        }
+
+        [TestMethod]
         public async Task GetNoCache()
         {
             var cache = new MemoryCache(new MemoryCacheOptions());
