@@ -2,6 +2,7 @@ TBD
 ---
  - Fixed: CachingHttpHandler throwing exceptions when processing responses
    with no content.
+ - Fixed: AspNetSample trying to use wrong System.Net.HttpClient.dll.
 
 3.0.1 (2019-06-24)
 ------------------
