@@ -4,9 +4,6 @@ Currently contains ASP.NET and ASP.NET Core middleware that compares the
 client IP against a local whitelist file or one hosted on a webserver,
 returning a `403 Forbidden` response if there is no match.
 
-For website team information:
-https://usgpeople.visualstudio.com/USG%20Web%20Development/_wiki/wikis/USG%20Web%20Development.wiki?pagePath=%2FDevelopment%2FIP%20whitelisting&wikiVersion=GBwikiMaster
-
 Setup (ASP.NET Core)
 --------------------
 After adding a USG.Authorization.AspNetCore package reference, modify Startup.cs
