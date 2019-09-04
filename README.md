@@ -122,3 +122,8 @@ Releasing
 ---------
 Update `Common.props` with new version number and push. CI will publish
 packages.
+
+Legal
+-----
+Copyright (c) 2019, USG People The Netherlands B.V. All rights reserved.
+Licensed under the 2-clause BSD license, see LICENSE.md

@@ -5,6 +5,7 @@
     <Copyright>USG People The Netherlands B.V.</Copyright>
     <Authors>USG People The Netherlands B.V.</Authors>
     <RootNamespace>USG.Authorization</RootNamespace>
+    <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
     <PackageProjectUrl>https://usgpeople.visualstudio.com/USG%20Web%20Development/_git/USG.Authorization</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://usgpeople.visualstudio.com/USG%20Web%20Development/_git/USG.Authorization</RepositoryUrl>
