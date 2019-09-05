@@ -71,7 +71,6 @@ namespace USG.Authorization
                 if (host.HostName != null &&
                         _regexes.Any(r => r.IsMatch(host.HostName)))
                     return true;
-
             }
             catch (SocketException)
             {
