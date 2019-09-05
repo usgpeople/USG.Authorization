@@ -4,8 +4,6 @@ Currently contains ASP.NET and ASP.NET Core middleware that compares the
 client IP against a local whitelist file or one hosted on a webserver,
 returning a `403 Forbidden` response if there is no match.
 
-**NOTE: Not yet available publicly on NuGet; we're working on it.**
-
 Setup (ASP.NET Core)
 --------------------
 After adding a USG.Authorization.AspNetCore package reference, modify Startup.cs
