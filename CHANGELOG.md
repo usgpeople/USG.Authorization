@@ -1,3 +1,7 @@
+3.0.3 (2019-09-05)
+------------------
+ - Open sourced under 2-clause BSD license.
+
 3.0.2 (2019-07-09)
 ------------------
  - New: defaults to 5 minute caching.
