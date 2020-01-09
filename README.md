@@ -120,8 +120,8 @@ to use an altogether different kind of whitelist source.
 
 Releasing
 ---------
-Update `Common.props` with new version number and push. CI will publish
-packages.
+Update `Directory.Build.props` with new version number and push. CI will
+publish packages.
 
 Legal
 -----
