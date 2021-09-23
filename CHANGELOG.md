@@ -1,3 +1,7 @@
+3.0.4 (2021-09-23)
+------------------
+ - Fixed: bumped the System.Net.Http package to 4.3.4 to address the issue described here: https://github.com/dotnet/runtime/issues/28343
+
 3.0.3 (2019-09-05)
 ------------------
  - Open sourced under 2-clause BSD license.
