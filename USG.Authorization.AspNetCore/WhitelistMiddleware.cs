@@ -29,7 +29,7 @@ namespace USG.Authorization
                         $"Host {ip} is not whitelisted for this site.");
 
                     context.Response.StatusCode = 403;
-                    context.Response.Body.Write(message);
+                    await context.Response.Body.WriteAsync(message);
                 }
             });
         }
