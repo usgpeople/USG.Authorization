@@ -1,3 +1,7 @@
+3.0.5 (2021-09-30)
+------------------
+ - Fixed: Kestrel throws an InvalidOperationException caused by sync Write()
+
 3.0.4 (2021-09-23)
 ------------------
  - Fixed: bumped the System.Net.Http package to 4.3.4 to address the issue described here: https://github.com/dotnet/runtime/issues/28343
